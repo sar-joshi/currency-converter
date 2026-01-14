@@ -4,7 +4,8 @@ namespace App\Domain;
 
 class CurrencyConverter
 {
-  private const RATES_TO_AUD = [
+  // Rates based on AUD
+  private const EXCHANGE_RATE = [
     Currency::AUD => 1.0,
     Currency::USD => 1.5,
     Currency::NZD => 0.9,
@@ -59,8 +60,8 @@ class CurrencyConverter
       return 1.0;
     }
 
-    $fromRate = self::RATES_TO_AUD[$fromCode];
-    $toRate = self::RATES_TO_AUD[$toCode];
+    $fromRate = self::EXCHANGE_RATE[$fromCode];
+    $toRate = self::EXCHANGE_RATE[$toCode];
 
     return $fromRate / $toRate;
   }
