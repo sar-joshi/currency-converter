@@ -39,4 +39,12 @@ final class CurrencyAmount
   {
     return $this->currency;
   }
+
+  /**
+   * Format for amounts. e.g, "100.00 AUD"
+   */
+  public function formatted(): string
+  {
+    return sprintf('%.2f %s', $this->amount, $this->currency->getCode());
+  }
 }
