@@ -25,21 +25,13 @@ try {
 
   switch ($actionType) {
     case "convert":
-      $originalAmount = new CurrencyAmount(
-        (float) $amount,
-        new Currency($sourceCurrency)
-      );
-
-      $converter = new CurrencyConverter(
-        $originalAmount,
-        new Currency($targetCurrency)
-      );
-
+      $originalAmount = new CurrencyAmount((float) $amount, new Currency($sourceCurrency));
+      $converter = new CurrencyConverter($originalAmount, new Currency($targetCurrency));
       $conversionResult = $converter->convert();
 
       echo "\n";
-      echo "Original:" . str_replace(",", "", $conversionResult->getOriginal()->csvFormatted()) . "\n";
-      echo "Converted:" . str_replace(",", "", $conversionResult->getConverted()->csvFormatted()) . "\n";
+      echo "Original Amount: " . str_replace(",", "", $conversionResult->getOriginal()->csvFormatted()) . "\n";
+      echo "Converted Amount: " . str_replace(",", "", $conversionResult->getConverted()->csvFormatted()) . "\n";
 
       # Save result to CSV
       $csvRepository = new CsvRepository($csvFilePath);
